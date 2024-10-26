@@ -19,7 +19,12 @@ addTaskButton.addEventListener("click", () => {
     };
 
     tasks.push(newTask);
+    saveTask();
     todoInput.value = "";
     console.log(tasks);
   }
 });
+
+function saveTask() {
+  localStorage.setItem("task", JSON.stringify(tasks));
+}
