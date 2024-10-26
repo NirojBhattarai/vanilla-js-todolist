@@ -1,30 +1,42 @@
-const todoInput = document.getElementById("todo-input");
-const addTaskButton = document.getElementById("add-task-btn");
-const todoList = document.getElementById("todo-list");
+document.addEventListener("DOMContentLoaded", () => {
+  // Rendering all elements only after DOM Content Loaded
 
-let tasks = [];
+  const todoInput = document.getElementById("todo-input");
+  const addTaskButton = document.getElementById("add-task-btn");
+  const todoList = document.getElementById("todo-list");
 
-//Adding task to array before storinf=g it on local storage
+  let tasks = JSON.parse(localStorage.getItem("task")) || [];
 
-addTaskButton.addEventListener("click", () => {
-  const taskText = todoInput.value.trim();
+  tasks.forEach((task) => renderTask(task));
 
-  if (taskText === "") {
-    return;
-  } else {
-    const newTask = {
-      id: Date.now(),
-      text: taskText,
-      completed: false,
-    };
+  //Adding task to array before storing it on local storage
 
-    tasks.push(newTask);
-    saveTask();
-    todoInput.value = "";
-    console.log(tasks);
+  addTaskButton.addEventListener("click", () => {
+    const taskText = todoInput.value.trim();
+
+    if (taskText === "") {
+      return;
+    } else {
+      const newTask = {
+        id: Date.now(),
+        text: taskText,
+        completed: false,
+      };
+
+      tasks.push(newTask);
+      saveTask();
+      todoInput.value = "";
+      console.log(tasks);
+    }
+  });
+
+  // Function to Render task
+
+  function renderTask(task) {
+    console.log(task);
+  }
+
+  function saveTask() {
+    localStorage.setItem("task", JSON.stringify(tasks));
   }
 });
-
-function saveTask() {
-  localStorage.setItem("task", JSON.stringify(tasks));
-}
