@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     li.setAttribute("data-id", task.id);
     li.innerHTML = `
     <span>${task.text}</span>
-    <button>delete</button>`;
+    <button>Delete</button>`;
 
     li.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
