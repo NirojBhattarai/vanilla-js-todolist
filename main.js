@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       tasks.push(newTask);
       saveTask();
+      renderTask(newTask);
       todoInput.value = "";
-      console.log(tasks);
     }
   });
 
