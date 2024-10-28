@@ -37,6 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
     li.innerHTML = `
     <span>${task.text}</span>
     <button>delete</button>`;
+
+    li.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        return;
+      } else {
+        task.completed = !task.comleted;
+        li.classList.toggle("completed");
+        saveTask();
+      }
+    });
+
+    li.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation(); // preventing toogle from triggering
+      tasks = tasks.filter((t) => t.id !== task.id);
+      li.remove();
+      saveTask();
+    });
+
     todoList.appendChild(li);
   }
 
