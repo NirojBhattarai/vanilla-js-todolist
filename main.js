@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let tasks = JSON.parse(localStorage.getItem("task")) || [];
 
+  tasks.forEach((task) => renderTask(task));
+
   //Adding task to array before storing it on local storage
 
   addTaskButton.addEventListener("click", () => {
@@ -24,16 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
       tasks.push(newTask);
       saveTask();
       todoInput.value = "";
-      renderTask(newTask);
+      console.log(tasks);
     }
   });
 
   // Function to Render tasks within list
-
   function renderTask(task) {
-    const taskItem = document.createElement("li");
-    taskItem.textContent = task.text;
-    todoList.appendChild(taskItem);
+    const li = document.createElement("li");
+    li.setAttribute("data-id", task.id);
+    li.innerHTML = `
+    <span>${task.text}</span>
+    <button>delete</button>`;
+    todoList.appendChild(li);
   }
 
   // Function to Save task in local storage
